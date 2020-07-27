@@ -6,7 +6,7 @@
   <div class="footer__copyright">Будильник на Svelte {year}</div>
 
   <div class="footer__about-link">
-    <a href="/about">О сервисе</a>
+    <a href="#/about">О сервисе</a>
   </div>
 </footer>
 
@@ -16,6 +16,7 @@
     justify-content: space-between;
     padding: 10px;
     border-top: 1px solid #ddd;
+    font-weight: lighter;
   }
 
   .footer__copyright {

@@ -1,9 +1,9 @@
 <nav class="main-menu">
   <div class="main-menu__item">
-    <a href="/alarms">Установить будильник</a>
+    <a href="#/alarms">Установить будильник</a>
   </div>
   <div class="main-menu__item">
-    <a href="/i-am-alarm">Стать будильником</a>
+    <a href="#/i-am-alarm">Стать будильником</a>
   </div>
 </nav>
 
