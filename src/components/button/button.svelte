@@ -1,5 +1,6 @@
 <script>
   export let to;
+  export let type = 'button';
 </script>
 
 {#if to}
@@ -7,7 +8,7 @@
     <slot/>
   </a>
 {:else}
-  <button class="button">
+  <button class="button" {type}>
     <slot/>
   </button>
 {/if}
@@ -15,15 +16,23 @@
 <style>
   .button {
     display: inline-block;
-    border: 2px solid #ddd;
+    border: 1px solid #777;
     background: none;
-    padding: 8px 20px;
-    border-radius: 4px;
-    color: #444;
+    padding: 0 20px;
+    border-radius: 0;
+    color: #333;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
   }
 
-  .button:hover {
+  .button:hover,
+  .button:focus {
+    outline: none;
     text-decoration: none;
-    background-color: #ddd;
+    background-color: #777;
+    color: #ddd;
   }
 </style>
