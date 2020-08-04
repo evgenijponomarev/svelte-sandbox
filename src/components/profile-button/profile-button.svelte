@@ -4,10 +4,17 @@
 
 <style>
   .profile {
+    margin-left: 20px;
     padding-left: 28px;
     background-image: url('./profile-button.png');
     background-position: left center;
     background-size: 22px;
     background-repeat: no-repeat;
+    color: rgb(0,100,200);
+    text-decoration: none;
+  }
+
+  .profile:hover {
+    text-decoration: underline;
   }
 </style>
