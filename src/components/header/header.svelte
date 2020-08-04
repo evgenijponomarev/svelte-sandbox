@@ -14,16 +14,27 @@
 <style>
   .header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    height: 50px;
+    padding: 0 10px;
     border-bottom: 1px solid #ddd;
     font-weight: lighter;
+    box-sizing: border-box;
+    overflow: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+
+  .header::-webkit-scrollbar {
+    display: none;
   }
 
   .header__title {
     font-size: 24px;
     text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(0,100,200);
   }
 
   .header__title:hover {
