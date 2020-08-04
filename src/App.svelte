@@ -7,11 +7,15 @@
   import ContentPlace from './components/content-place/content-place.svelte';
 
   import Alarms from './views/alarms/alarms.svelte';
+  import AlarmAdd from './views/alarm-add/alarm-add.svelte';
+  import AlarmEdit from './views/alarm-edit/alarm-edit.svelte';
   import About from './views/about/about.svelte';
 
   const routes = {
     '/': Alarms,
     '/alarms': Alarms,
+    '/alarm-add': AlarmAdd,
+    '/alarm-edit/:id': AlarmEdit,
     '/about': About,
   };
 </script>
