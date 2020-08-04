@@ -1,16 +1,27 @@
 <nav class="main-menu">
-  <div class="main-menu__item">
-    <a href="#/alarms">Установить будильник</a>
-  </div>
-  <div class="main-menu__item">
-    <a href="#/i-am-alarm">Стать будильником</a>
-  </div>
+  <a href="#/alarms" class="main-menu__item">Установить будильник</a>
+  <a href="#/i-am-alarm" class="main-menu__item">Стать будильником</a>
 </nav>
 
 <style>
   .main-menu {
     display: flex;
+    margin-left: 20px;
   }
+
+  .main-menu__item {
+    color: rgb(0,100,200);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .main-menu__item:hover {
+    text-decoration: underline;
+  }
+
+  .main-menu__item:visited {
+  color: rgb(0,80,160);
+}
 
   .main-menu__item + .main-menu__item {
     margin-left: 20px;
