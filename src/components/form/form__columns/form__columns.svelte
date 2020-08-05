@@ -6,5 +6,6 @@
   .form__columns {
     display: flex;
     flex-basis: auto;
+    padding-bottom: 20px;
   }
 </style>
