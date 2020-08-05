@@ -7,9 +7,7 @@
 <footer class={['footer', mix].join(' ')}>
   <div class="footer__copyright">Будильник на Svelte {year}</div>
 
-  <div class="footer__about-link">
-    <a href="#/about">О сервисе</a>
-  </div>
+  <a class="footer__about-link" href="#/about">О сервисе</a>
 </footer>
 
 <style>
@@ -25,5 +23,9 @@
 
   .footer__copyright {
     color: #999;
+  }
+
+  .footer__about-link {
+    text-decoration: none;
   }
 </style>
