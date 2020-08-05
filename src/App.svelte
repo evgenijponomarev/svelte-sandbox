@@ -1,31 +1,33 @@
 <script>
   import Router from 'svelte-spa-router'
 
-  import Layout from './components/layout/layout.svelte';
-  import Header from './components/header/header.svelte';
-  import Footer from './components/footer/footer.svelte';
-  import ContentPlace from './components/content-place/content-place.svelte';
+  import Page from './components/page/page';
+  import Header from './components/header/header';
+  import Footer from './components/footer/footer';
+  import ContentPlace from './components/content-place/content-place';
 
-  import Alarms from './views/alarms/alarms.svelte';
-  import AlarmAdd from './views/alarm-add/alarm-add.svelte';
-  import AlarmEdit from './views/alarm-edit/alarm-edit.svelte';
-  import About from './views/about/about.svelte';
+  import Alarms from './views/alarms/alarms';
+  import AlarmAdd from './views/alarm-add/alarm-add';
+  import AlarmEdit from './views/alarm-edit/alarm-edit';
+  import About from './views/about/about';
+  import Profile from './views/profile/profile';
 
   const routes = {
     '/': Alarms,
     '/alarms': Alarms,
     '/alarm-add': AlarmAdd,
-    '/alarm-edit/:id': AlarmEdit,
+    '/alarms/:id': AlarmEdit,
     '/about': About,
+    '/profile': Profile,
   };
 </script>
 
-<Layout>
-  <Header/>
+<Page>
+  <Header mix="page__header"/>
 
-  <ContentPlace>
+  <ContentPlace mix="page__body">
     <Router {routes}/>
   </ContentPlace>
 
-  <Footer/>
-</Layout>
+  <Footer mix="page__footer"/>
+</Page>

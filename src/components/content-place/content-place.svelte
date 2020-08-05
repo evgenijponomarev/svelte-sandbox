@@ -1,10 +1,13 @@
-<div class="content-place">
+<script>
+  export let mix = '';
+</script>
+
+<div class={['content-place', mix].join(' ')}>
   <slot/>
 </div>
 
 <style>
   .content-place {
-    height: 100%;
     padding: 40px 10px;
   }
 </style>

@@ -1,4 +1,4 @@
-<a href="/profile" class="profile">
+<a href="#/profile" class="profile">
   Профиль
 </a>
 

@@ -1,9 +1,11 @@
 <script>
   import MainMenu from '../main-menu/main-menu.svelte';
   import ProfileButton from '../profile-button/profile-button.svelte';
+
+  export let mix = '';
 </script>
 
-<header class="header">
+<header class={['header', mix].join(' ')}>
   <a href="/" class="header__title">Будильник</a>
 
   <MainMenu/>

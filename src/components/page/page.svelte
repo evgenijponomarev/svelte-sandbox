@@ -1,14 +1,18 @@
-<div class="layout">
+<div class="page">
   <slot/>
 </div>
 
 <style>
-  .layout {
+  .page {
     max-width: 800px;
     margin: 0 auto;
-    height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  :global(.page__body) {
+    flex-grow: 1;
   }
 </style>
