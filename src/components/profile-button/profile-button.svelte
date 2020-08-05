@@ -13,8 +13,4 @@
     color: rgb(0,100,200);
     text-decoration: none;
   }
-
-  .profile:hover {
-    text-decoration: underline;
-  }
 </style>
