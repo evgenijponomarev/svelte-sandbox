@@ -8,11 +8,16 @@
   export let type;
   export let options;
   export let value;
+  export let checked;
 
   const params = { id, name };
+  const isCheckbox = type === 'checkbox';
 </script>
 
-<div class="form-field">
+<div
+  class="form-field"
+  class:form-field_type_checkbox={isCheckbox}
+>
   <label for={id} class="form-field__label">
     {label}
   </label>
@@ -22,6 +27,13 @@
       mix="form-field__control"
       {options}
       bind:value={value}
+      {...params}
+    />
+  {:else if isCheckbox}
+    <input
+      class="form-field__control"
+      type="checkbox"
+      bind:checked={checked}
       {...params}
     />
   {:else}
@@ -40,5 +52,18 @@
     color: #333;
     font-size: 14px;
     margin-bottom: 5px;
+  }
+
+  .form-field_type_checkbox {
+    display: flex;
+  }
+
+  .form-field_type_checkbox > .form-field__control {
+    order: 1;
+    margin-right: 5px;
+  }
+
+  .form-field_type_checkbox > .form-field__label {
+    order: 2;
   }
 </style>
