@@ -8,17 +8,12 @@
   import ButtonGroup from '../../components/button-group/button-group';
   import Button from '../../components/button/button';
 
+  import ALARM_REPEAT_OPTIONS from '../../constants/alarm-repeat-options';
+
   export let alarm = {};
   export let onCLose = () => {};
 
   const isEditForm = !!alarm.id;
-
-  const ALARM_REPEAT_OPTIONS = [
-    { value: 'once', text: 'Не повторять' },
-    { value: 'every_day', text: 'Каждый день' },
-    { value: 'workdays', text: 'По будням' },
-    { value: 'weekends', text: 'По выходным' },
-  ];
 
   let alarmTime = isEditForm ? alarm.time : '';
   let alarmRepeat = isEditForm ? alarm.repeat : ALARM_REPEAT_OPTIONS[0].value;
