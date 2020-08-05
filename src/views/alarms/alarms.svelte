@@ -1,9 +1,13 @@
 <script>
-  import Button from '../../components/button/button.svelte';
-  import Title from '../../components/title/title.svelte';
+  import Button from '../../components/button/button';
+  import Title from '../../components/title/title';
+  import AlarmList from '../../components/alarm-list/alarm-list';
+
+  import ALARMS from '../../mocks/alarms';
 </script>
 
 <Title>Будильники</Title>
 
 <Button to="#/alarm-add">Добавить</Button>
-<Button to="#/alarm-edit/1">Изменить</Button>
+
+<AlarmList alarms={ALARMS}/>
