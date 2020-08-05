@@ -12,19 +12,14 @@
 
   export let alarm = {};
   export let onCLose = () => {};
+  export let onDelete = () => {};
+  export let onSubmit = () => {};
 
   const isEditForm = !!alarm.id;
-
-  let alarmTime = isEditForm ? alarm.time : '';
-  let alarmRepeat = isEditForm ? alarm.repeat : ALARM_REPEAT_OPTIONS[0].value;
-
-  function onSubmit() {
-    console.log('onSubmit', alarmTime, alarmRepeat)
-  }
 </script>
 
 <DialogOverlay onClose={onCLose}>
-  <Dialog mix="dialog-alarm-add" onClose={onCLose}>
+  <Dialog mix="dialog-alarm-form" onClose={onCLose}>
     <span slot="title">
       {#if isEditForm}
         Изменить будильник
@@ -42,7 +37,7 @@
               name="alarm-time"
               label="Время"
               type="time"
-              bind:value={alarmTime}
+              bind:value={alarm.time}
             />
           </FormColumn>
 
@@ -53,15 +48,21 @@
               label="Периодичность"
               type="select"
               options={ALARM_REPEAT_OPTIONS}
-              bind:value={alarmRepeat}
+              bind:value={alarm.repeat}
             />
           </FormColumn>
         </FormColumns>
 
         <ButtonGroup>
-          <Button type="submit">
+          <Button mix="button-group__item" type="submit">
             Сохранить
           </Button>
+
+          {#if isEditForm}
+            <Button mix="button-group__item" onClick={onDelete}>
+              Удалить
+            </Button>
+          {/if}
         </ButtonGroup>
       </Form>
     </div>
@@ -69,7 +70,7 @@
 </DialogOverlay>
 
 <style>
-  :global(.dialog-alarm-add) {
+  :global(.dialog-alarm-form) {
     width: 400px;
   }
 </style>
