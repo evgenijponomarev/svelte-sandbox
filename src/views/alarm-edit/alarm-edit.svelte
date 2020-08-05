@@ -8,17 +8,30 @@
 
   export let params = {};
 
-  function onCloseDialog() {
-    pop();
-  }
-
   const alarm = {
     id: params.id,
     time: '10:00',
     repeat: 'workdays',
   };
+
+  function onCloseDialog() {
+    pop();
+  }
+
+  function onDelete() {
+    console.log(`Delete alarm with id ${alarm.id}`)
+  }
+
+  function onSubmit() {
+    console.log(`Edit alarm with id ${alarm.id}`, alarm)
+  }
 </script>
 
 <Alarms/>
 
-<DialogAlarmForm onCLose={onCloseDialog} {alarm}/>
+<DialogAlarmForm
+  onCLose={onCloseDialog}
+  onDelete={onDelete}
+  onSubmit={onSubmit}
+  {alarm}
+/>
