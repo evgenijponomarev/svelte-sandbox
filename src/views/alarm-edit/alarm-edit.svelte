@@ -20,8 +20,15 @@
     pop();
   }
 
-  function onDelete() {
-    console.log(`Delete alarm with id ${alarm.id}`)
+  async function onDelete() {
+    try {
+      const { status } = await apiProvider.del(`/alarms/${alarm.id}`);
+      if (status === 'ok') {
+        closeDialog();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function onSubmit() {
