@@ -34,4 +34,8 @@ async function post(url, data) {
   return await request('post', url, data);
 }
 
-export default { get, post };
+async function del(url) {
+  return await request('delete', url);
+}
+
+export default { get, post, del };
