@@ -1,10 +1,21 @@
 <script>
+  import apiProvider from '../../services/api-provider';
+
   import ButtonGroup from '../../components/button-group/button-group';
   import Button from '../../components/button/button';
   import Title from '../../components/title/title';
   import AlarmList from '../../components/alarm-list/alarm-list';
 
-  import ALARMS from '../../mocks/alarms';
+  async function getAlarms() {
+    try {
+      const { items } = await apiProvider.get('/alarms');
+      return items;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  let alarms = getAlarms();
 </script>
 
 <Title>Будильники</Title>
@@ -13,4 +24,8 @@
   <Button mix="button-group__item" to="#/alarm-add">Добавить</Button>
 </ButtonGroup>
 
-<AlarmList alarms={ALARMS}/>
+{#await alarms}
+  <p>...waiting</p>
+{:then alarms}
+  <AlarmList {alarms}/>
+{/await}
