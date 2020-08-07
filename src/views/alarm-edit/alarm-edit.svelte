@@ -1,6 +1,8 @@
 <script>
   import { pop } from 'svelte-spa-router';
 
+  import apiProvider from '../../services/api-provider';
+
   import Alarms from '../alarms/alarms.svelte';
 
   import DialogOverlay from '../../components/dialog-overlay/dialog-overlay.svelte';
@@ -14,7 +16,7 @@
     repeat: 'workdays',
   };
 
-  function onCloseDialog() {
+  function closeDialog() {
     pop();
   }
 
@@ -22,16 +24,28 @@
     console.log(`Delete alarm with id ${alarm.id}`)
   }
 
-  function onSubmit() {
-    console.log(`Edit alarm with id ${alarm.id}`, alarm)
+  async function onSubmit() {
+    if (!alarm.time) return;
+    
+    try {
+      const { status } = await apiProvider.post(`/alarms/${alarm.id}`, {
+        time: alarm.time,
+        repeat: alarm.repeat,
+      });
+      if (status === 'ok') {
+        closeDialog();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 </script>
 
 <Alarms/>
 
 <DialogAlarmForm
-  onCLose={onCloseDialog}
-  onDelete={onDelete}
-  onSubmit={onSubmit}
+  onCLose={closeDialog}
+  {onDelete}
+  {onSubmit}
   {alarm}
 />
