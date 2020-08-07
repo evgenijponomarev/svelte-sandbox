@@ -30,3 +30,5 @@ function replyOk(data) {
 mock.onGet('/alarms').reply(replyOk({ items: ALARMS }));
 
 mock.onPost('/alarms').reply(replyOk());
+
+mock.onPost(/\/alarms\/\d+/).reply(replyOk());
