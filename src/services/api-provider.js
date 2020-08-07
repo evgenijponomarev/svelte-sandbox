@@ -2,14 +2,36 @@ import axios from 'axios';
 
 import '../mocks';
 
-async function get(url) {
+async function request(method, url, data, heads = {}) {
+  const params = {
+    method,
+    url,
+    data,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      ...heads,
+    },
+  };
+
   try {
-    const response = await axios.get(url);
-    if (response && response.data && response.data.items)
-    return (response && response.data) || { status: 'No data from mocks' };
+    const response = await axios(params);
+    if (response && response.data) {
+      return response.data;
+    } else {
+      return { status: 'No data from mocks' };
+    }
   } catch (error) {
     return error;
   }
 }
 
-export default { get };
+async function get(url) {
+  return await request('get', url);
+}
+
+async function post(url, data) {
+  return await request('post', url, data);
+}
+
+export default { get, post };
