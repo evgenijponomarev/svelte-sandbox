@@ -32,5 +32,6 @@ mock.onGet('/alarms').reply(replyOk({ items: ALARMS }));
 mock.onPost('/alarms').reply(replyOk());
 
 mock.onPost(/\/alarms\/\d+/).reply(replyOk());
+mock.onPost('/profile').reply(replyOk());
 
 mock.onDelete(/\/alarms\/\d+/).reply(replyOk());
