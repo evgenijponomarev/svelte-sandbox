@@ -1,6 +1,8 @@
 <script>
   import { pop } from 'svelte-spa-router';
 
+  import apiProvider from '../../services/api-provider';
+
   import Alarms from '../alarms/alarms.svelte';
 
   import DialogOverlay from '../../components/dialog-overlay/dialog-overlay.svelte';
@@ -11,15 +13,24 @@
     repeat: 'once',
   };
 
-  function onCloseDialog() {
+  function closeDialog() {
     pop();
   }
 
-  function onSubmit() {
-    console.log('Add alarm', alarm)
+  async function onSubmit() {
+    if (!alarm.time) return;
+    
+    try {
+      const { status } = await apiProvider.post('/alarms', alarm);
+      if (status === 'ok') {
+        closeDialog();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 </script>
 
 <Alarms/>
 
-<DialogAlarmForm onCLose={onCloseDialog} onSubmit={onSubmit} {alarm}/>
+<DialogAlarmForm onCLose={closeDialog} {onSubmit} {alarm}/>
