@@ -4,9 +4,21 @@
   export let name = '';
   export let options = [{ value: '', text: '' }];
   export let value;
+  export let onChange;
+
+  const params = {
+    id,
+    name,
+  };
 </script>
 
-<select {id} {name} class={['select-field', mix].join(' ')} bind:value={value}>
+<select
+  class={['select-field', mix].join(' ')}
+  on:change={onChange}
+  on:blur={onChange}
+  bind:value={value}
+  {...params}
+>
   {#each options as option}
     <option value={option.value}>
       {option.text}

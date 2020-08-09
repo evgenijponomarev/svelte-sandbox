@@ -9,9 +9,13 @@
   export let options;
   export let value;
   export let checked;
+  export let onChange;
 
-  const params = { id, name };
   const isCheckbox = type === 'checkbox';
+  
+  function onChangeHandler(event) {
+    onChange(isCheckbox ? event.target.checked : event.target.value, event);
+  }
 </script>
 
 <div
@@ -26,22 +30,28 @@
     <SelectField
       mix="form-field__control"
       {options}
-      bind:value={value}
-      {...params}
+      {value}
+      {id}
+      {name}
+      onChange={onChangeHandler}
     />
   {:else if isCheckbox}
     <input
       class="form-field__control"
       type="checkbox"
-      bind:checked={checked}
-      {...params}
+      {checked}
+      {id}
+      {name}
+      on:change={onChangeHandler}
     />
   {:else}
     <TextField
       mix="form-field__control"
       {type}
-      bind:value={value}
-      {...params}
+      {value}
+      {id}
+      {name}
+      onChange={onChangeHandler}
     />
   {/if}
 </div>

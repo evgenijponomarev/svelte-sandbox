@@ -4,19 +4,16 @@
   export let id = '';
   export let name = '';
   export let value = '';
-
-  const params = {
-    type,
-    id,
-    name,
-    'bind:value': value,
-  };
+  export let onChange;
 </script>
 
 <input
   class={['text-field', mix].join(' ')}
-  bind:value={value}
-  {...params}
+  on:change={onChange}
+  {id}
+  {name}
+  {type}
+  {value}
 />
 
 <style>
