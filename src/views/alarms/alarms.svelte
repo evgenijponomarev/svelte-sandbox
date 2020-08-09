@@ -9,13 +9,9 @@
   export let onGetAlarms = () => {};
 
   async function getAlarms() {
-    try {
-      const { items } = await apiProvider.get('/alarms');
-      onGetAlarms(items);
-      return items;
-    } catch (error) {
-      console.log(error);
-    }
+    const { items } = await apiProvider.get('/alarms');
+    onGetAlarms(items);
+    return items;
   }
   
   let alarms = getAlarms();

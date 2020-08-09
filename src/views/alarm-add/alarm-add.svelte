@@ -20,12 +20,8 @@
   async function onSubmit() {
     if (!alarm.time) return;
     
-    try {
-      const { status } = await apiProvider.post('/alarms', alarm);
-      status === 'ok' && closeDialog();
-    } catch (error) {
-      console.log(error);
-    }
+    const { status } = await apiProvider.post('/alarms', alarm);
+    status === 'ok' && closeDialog();
   }
 </script>
 

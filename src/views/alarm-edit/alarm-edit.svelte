@@ -24,26 +24,18 @@
   }
 
   async function onDelete() {
-    try {
-      const { status } = await apiProvider.del(`/alarms/${alarm.id}`);
-      status === 'ok' && closeDialog();
-    } catch (error) {
-      console.log(error);
-    }
+    const { status } = await apiProvider.del(`/alarms/${alarm.id}`);
+    status === 'ok' && closeDialog();
   }
 
   async function onSubmit() {
     if (!alarm.time) return;
     
-    try {
-      const { status } = await apiProvider.post(`/alarms/${alarm.id}`, {
-        time: alarm.time,
-        repeat: alarm.repeat,
-      });
-      status === 'ok' && closeDialog();
-    } catch (error) {
-      console.log(error);
-    }
+    const { status } = await apiProvider.post(`/alarms/${alarm.id}`, {
+      time: alarm.time,
+      repeat: alarm.repeat,
+    });
+    status === 'ok' && closeDialog();
   }
 </script>
 

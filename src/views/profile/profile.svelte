@@ -33,20 +33,18 @@
   }
 
   async function onSubmit() {
-    if (!profileData.age || !profileData.partnerAge
-        || profileData.isConsentToWakeUp && (!profileData.wakeUpTimeStart || !profileData.wakeUpTimeStop)
-      ) {
+    if (
+      !profileData.age
+      || !profileData.partnerAge
+      || profileData.isConsentToWakeUp && (!profileData.wakeUpTimeStart || !profileData.wakeUpTimeStop)
+    ) {
       isErrorVisible = true;
       return;
     }
     
-    try {
-      const { status } = await apiProvider.post('/profile', profileData);
-      if (status === 'ok') {
-        push('/');
-      }
-    } catch (error) {
-      console.log(error);
+    const { status } = await apiProvider.post('/profile', profileData);
+    if (status === 'ok') {
+      push('/');
     }
   }
 
