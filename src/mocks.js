@@ -2,10 +2,12 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import ALARMS from './mocks/alarms';
+import PROFILE from './mocks/profile';
 
-const mock = new MockAdapter(axios, { delayResponse: 1000 });
+const mock = new MockAdapter(axios, { delayResponse: 200 });
 
 function log(request, response) {
+  console.log('')
   console.log(`Request ${request.method.toUpperCase()} ${request.url}`);
   if (request.data) {
     console.log('with body:');
@@ -28,6 +30,7 @@ function replyOk(data) {
 }
 
 mock.onGet('/alarms').reply(replyOk({ items: ALARMS }));
+mock.onGet('/profile').reply(replyOk({ profile: PROFILE }));
 
 mock.onPost('/alarms').reply(replyOk());
 
