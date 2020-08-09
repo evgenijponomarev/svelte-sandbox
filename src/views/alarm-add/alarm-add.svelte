@@ -5,16 +5,16 @@
 
   import Alarms from '../alarms/alarms.svelte';
 
-  import DialogOverlay from '../../components/dialog-overlay/dialog-overlay.svelte';
   import DialogAlarmForm from '../../components/dialog-alarm-form/dialog-alarm-form.svelte';
 
-  const alarm = {
-    time: '',
-    repeat: 'once',
-  };
+  let alarm;
 
   function closeDialog() {
     pop();
+  }
+
+  function onChangeData(alarmData) {
+    alarm = alarmData;
   }
 
   async function onSubmit() {
@@ -22,9 +22,7 @@
     
     try {
       const { status } = await apiProvider.post('/alarms', alarm);
-      if (status === 'ok') {
-        closeDialog();
-      }
+      status === 'ok' && closeDialog();
     } catch (error) {
       console.log(error);
     }
@@ -33,4 +31,9 @@
 
 <Alarms/>
 
-<DialogAlarmForm onCLose={closeDialog} {onSubmit} {alarm}/>
+<DialogAlarmForm
+  onCLose={closeDialog}
+  {onSubmit}
+  alarmData={alarm}
+  {onChangeData}
+/>
