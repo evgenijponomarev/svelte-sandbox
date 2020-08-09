@@ -10,12 +10,21 @@
 
   import ALARM_REPEAT_OPTIONS from '../../constants/alarm-repeat-options';
 
-  export let alarm = {};
+  export let alarmData = {};
   export let onCLose = () => {};
   export let onDelete = () => {};
   export let onSubmit = () => {};
+  export let onChangeData = () => {};
 
-  const isEditForm = !!alarm.id;
+  const isEditForm = !!alarmData.id;
+
+  function onChangeTime(value) {
+    onChangeData({ ...alarmData, time: value });
+  }
+
+  function onChangeRepeat(value) {
+    onChangeData({ ...alarmData, repeat: value });
+  }
 </script>
 
 <DialogOverlay onClose={onCLose}>
@@ -37,7 +46,8 @@
               name="alarm-time"
               label="Время"
               type="time"
-              bind:value={alarm.time}
+              value={alarmData.time}
+              onChange={onChangeTime}
             />
           </FormColumn>
 
@@ -48,7 +58,8 @@
               label="Периодичность"
               type="select"
               options={ALARM_REPEAT_OPTIONS}
-              bind:value={alarm.repeat}
+              value={alarmData.repeat}
+              onChange={onChangeRepeat}
             />
           </FormColumn>
         </FormColumns>
