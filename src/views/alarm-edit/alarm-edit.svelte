@@ -3,18 +3,21 @@
 
   import apiProvider from '../../services/api-provider';
 
-  import Alarms from '../alarms/alarms.svelte';
+  import Alarms from '../alarms/alarms';
 
-  import DialogOverlay from '../../components/dialog-overlay/dialog-overlay.svelte';
-  import DialogAlarmForm from '../../components/dialog-alarm-form/dialog-alarm-form.svelte';
+  import DialogAlarmForm from '../../components/dialog-alarm-form/dialog-alarm-form';
 
-  export let params = {};
+  export let params;
 
-  const alarm = {
-    id: params.id,
-    time: '10:00',
-    repeat: 'workdays',
-  };
+  let alarm;
+
+  function onGetAlarms(alarms) {
+    alarm = alarms.find(a => +a.id === +params.id);
+  }
+
+  function onChangeData(alarmData) {
+    alarm = alarmData;
+  }
 
   function closeDialog() {
     pop();
@@ -23,9 +26,7 @@
   async function onDelete() {
     try {
       const { status } = await apiProvider.del(`/alarms/${alarm.id}`);
-      if (status === 'ok') {
-        closeDialog();
-      }
+      status === 'ok' && closeDialog();
     } catch (error) {
       console.log(error);
     }
@@ -39,20 +40,21 @@
         time: alarm.time,
         repeat: alarm.repeat,
       });
-      if (status === 'ok') {
-        closeDialog();
-      }
+      status === 'ok' && closeDialog();
     } catch (error) {
       console.log(error);
     }
   }
 </script>
 
-<Alarms/>
+<Alarms {onGetAlarms}/>
 
-<DialogAlarmForm
-  onCLose={closeDialog}
-  {onDelete}
-  {onSubmit}
-  {alarm}
-/>
+{#if alarm}
+  <DialogAlarmForm
+    onCLose={closeDialog}
+    alarmData={alarm}
+    {onDelete}
+    {onSubmit}
+    {onChangeData}
+  />
+{/if}
