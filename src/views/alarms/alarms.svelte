@@ -6,9 +6,12 @@
   import Title from '../../components/title/title';
   import AlarmList from '../../components/alarm-list/alarm-list';
 
+  export let onGetAlarms = () => {};
+
   async function getAlarms() {
     try {
       const { items } = await apiProvider.get('/alarms');
+      onGetAlarms(items);
       return items;
     } catch (error) {
       console.log(error);
