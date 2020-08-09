@@ -1,27 +1,27 @@
 export default [
   {
     id: 1,
-    time: '8:00',
+    time: '08:00',
     repeat: 'workdays',
   },
   {
     id: 2,
-    time: '8:05',
+    time: '08:05',
     repeat: 'workdays',
   },
   {
     id: 3,
-    time: '8:10',
+    time: '08:10',
     repeat: 'workdays',
   },
   {
     id: 4,
-    time: '8:10',
+    time: '08:15',
     repeat: 'workdays',
   },
   {
     id: 5,
-    time: '8:15',
+    time: '08:20',
     repeat: 'workdays',
   },
   {
