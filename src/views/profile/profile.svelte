@@ -1,5 +1,6 @@
 <script>
   import { push } from 'svelte-spa-router';
+  import { onMount } from 'svelte';
 
   import apiProvider from '../../services/api-provider';
 
@@ -20,13 +21,7 @@
 
   let isErrorVisible = false;
 
-  let profileData;
-
-  function getOnChangeHandler(field) {
-    return function(value) {
-      profileData[field] = value;
-    }
-  }
+  let profile = {};
 
   function onCLoseErrorDialog() {
     isErrorVisible = false;
@@ -34,30 +29,23 @@
 
   async function onSubmit() {
     if (
-      !profileData.age
-      || !profileData.partnerAge
-      || profileData.isConsentToWakeUp && (!profileData.wakeUpTimeStart || !profileData.wakeUpTimeStop)
+      !profile.age
+      || !profile.partnerAge
+      || profile.isConsentToWakeUp && (!profile.wakeUpTimeStart || !profile.wakeUpTimeStop)
     ) {
       isErrorVisible = true;
       return;
     }
     
-    const { status } = await apiProvider.post('/profile', profileData);
+    const { status } = await apiProvider.post('/profile', profile);
     if (status === 'ok') {
       push('/');
     }
   }
 
-  async function getProfile() {
-    profileData = await apiProvider.get('/profile').profile;
-  }
-
-  const profilePromise = new Promise(resolve => {
-    apiProvider.get('/profile').then(res => {
-      console.log('then', res)
-      profileData = res.profile;
-      resolve(res.profile);
-    });
+  onMount(async () => {
+    const response = await apiProvider.get('/profile');
+    profile = response.profile;
   });
 </script>
 
@@ -67,9 +55,7 @@
   Укажите ваши данные и данные собеседника, чтобы мы знали кому поручить ваше пробуждение.
 </p>
 
-{#await profilePromise}
-  waiting...
-{:then profile}
+{#if profile.age}
   <Form {onSubmit}>
     <Form__Columns>
       <Form__Column>
@@ -79,8 +65,7 @@
           label="Пол"
           type="select"
           options={GENDER_OPTIONS}
-          onChange={getOnChangeHandler('gender')}
-          value={profile.gender}
+          bind:value={profile.gender}
         />
       </Form__Column>
 
@@ -90,8 +75,7 @@
           name="age"
           label="Возраст"
           type="number"
-          onChange={getOnChangeHandler('age')}
-          value={profile.age}
+          bind:value={profile.age}
         />
       </Form__Column>
     </Form__Columns>
@@ -104,8 +88,7 @@
           label="Пол собеседника"
           type="select"
           options={GENDER_OPTIONS}
-          onChange={getOnChangeHandler('partnerGender')}
-          value={profile.partnerGender}
+          bind:value={profile.partnerGender}
         />
       </Form__Column>
 
@@ -115,8 +98,7 @@
           name="partner-age"
           label="Возраст собеседника"
           type="number"
-          onChange={getOnChangeHandler('partnerAge')}
-          value={profile.partnerAge}
+          bind:value={profile.partnerAge}
         />
       </Form__Column>
     </Form__Columns>
@@ -128,13 +110,12 @@
           name="is-consent-to-wake-up"
           label="Хочу будить других пользователей"
           type="checkbox"
-          checked={profileData.isConsentToWakeUp}
-          onChange={getOnChangeHandler('isConsentToWakeUp')}
+          bind:checked={profile.isConsentToWakeUp}
         />
       </Form__Column>
     </Form__Columns>
 
-    {#if profileData.isConsentToWakeUp}
+    {#if profile.isConsentToWakeUp}
       <Form__Columns>
         <Form__Column>
           <FormField
@@ -142,8 +123,7 @@
             name="wake-up-time-start"
             label="С"
             type="time"
-            onChange={getOnChangeHandler('wakeUpTimeStart')}
-            value={profile.wakeUpTimeStart}
+            bind:value={profile.wakeUpTimeStart}
           />
         </Form__Column>
 
@@ -153,8 +133,7 @@
             name="wake-up-time-stop"
             label="До"
             type="time"
-            onChange={getOnChangeHandler('wakeUpTimeStop')}
-            value={profile.wakeUpTimeStop}
+            bind:value={profile.wakeUpTimeStop}
           />
         </Form__Column>
       </Form__Columns>
@@ -168,7 +147,7 @@
       <a class="button-group__item" href="#/">Назад</a>
     </ButtonGroup>
   </Form>
-{/await}
+{/if}
 
 {#if isErrorVisible}
   <DialogOverlay onClose={onCLoseErrorDialog}>
