@@ -14,7 +14,7 @@
   const isCheckbox = type === 'checkbox';
   
   function onChangeHandler(event) {
-    onChange(isCheckbox ? event.target.checked : event.target.value, event);
+    onChange && onChange(isCheckbox ? event.target.checked : event.target.value, event);
   }
 </script>
 
@@ -30,16 +30,16 @@
     <SelectField
       mix="form-field__control"
       {options}
-      {value}
       {id}
       {name}
       onChange={onChangeHandler}
+      bind:value={value}
     />
   {:else if isCheckbox}
     <input
       class="form-field__control"
       type="checkbox"
-      {checked}
+      bind:checked={checked}
       {id}
       {name}
       on:change={onChangeHandler}
@@ -48,10 +48,10 @@
     <TextField
       mix="form-field__control"
       {type}
-      {value}
       {id}
       {name}
       onChange={onChangeHandler}
+      bind:value={value}
     />
   {/if}
 </div>

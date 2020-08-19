@@ -5,15 +5,19 @@
   export let name = '';
   export let value = '';
   export let onChange;
+
+  const props = {
+    id,
+    name,
+    type
+  };
 </script>
 
 <input
   class={['text-field', mix].join(' ')}
   on:change={onChange}
-  {id}
-  {name}
-  {type}
-  {value}
+  bind:value={value}
+  {...props}
 />
 
 <style>
