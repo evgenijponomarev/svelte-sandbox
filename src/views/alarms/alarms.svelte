@@ -14,7 +14,7 @@
     return items;
   }
   
-  let alarms = getAlarms();
+  let alarmsPromise = getAlarms();
 </script>
 
 <Title>Будильники</Title>
@@ -23,7 +23,7 @@
   <Button mix="button-group__item" to="#/alarm-add">Добавить</Button>
 </ButtonGroup>
 
-{#await alarms}
+{#await alarmsPromise}
   <p>...waiting</p>
 {:then alarms}
   <AlarmList {alarms}/>
