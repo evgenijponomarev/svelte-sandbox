@@ -11,6 +11,7 @@
   import AlarmEdit from './views/alarm-edit/alarm-edit';
   import About from './views/about/about';
   import Profile from './views/profile/profile';
+  import Sandbox from './views/sandbox';
 
   const routes = {
     '/': Alarms,
@@ -19,6 +20,7 @@
     '/alarms/:id': AlarmEdit,
     '/about': About,
     '/profile': Profile,
+    '/sandbox': Sandbox,
   };
 </script>
 

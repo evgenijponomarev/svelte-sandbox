@@ -1,0 +1,14 @@
+$color: red;
+
+div {
+  color: $color;
+}
+
+.block {
+  padding: 10px;
+  border: 1px solid #000;
+  
+  .block__element {
+    border: 1px solid #aaa;
+  }
+}
