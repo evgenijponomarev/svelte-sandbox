@@ -1,1 +1,5 @@
-# Test application on Svelte
+# Учебное приложение "Будильник" на Svelte.
+Разработано в рамках изучения Svelte для наглядного сравнения процесса разработки и размера бандла.
+
+Аналогичное приложение на React:
+https://github.com/evgeniy1801/budilnik-on-react

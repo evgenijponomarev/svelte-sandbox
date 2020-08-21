@@ -1,6 +1,4 @@
 <script>
-  import Router from 'svelte-spa-router';
-
   import Page from './components/page/page';
   import Header from './components/header/header';
   import Footer from './components/footer/footer';
@@ -11,24 +9,50 @@
   import AlarmEdit from './views/alarm-edit/alarm-edit';
   import About from './views/about/about';
   import Profile from './views/profile/profile';
-  import Sandbox from './views/sandbox';
 
-  const routes = {
-    '/': Alarms,
-    '/alarms': Alarms,
-    '/alarm-add': AlarmAdd,
-    '/alarms/:id': AlarmEdit,
-    '/about': About,
-    '/profile': Profile,
-    '/sandbox': Sandbox,
-  };
+  export let currentRoute = '';
+
+  const routes = [
+    {
+      path: /^$/,
+      component: Alarms,
+    },
+    {
+      path: /^#\/$/,
+      component: Alarms,
+    },
+    {
+      path: /^#\/alarms$/,
+      component: Alarms,
+    },
+    {
+      path: /^#\/alarm\-add$/,
+      component: AlarmAdd,
+    },
+    {
+      path: /^#\/alarms\/\d+$/,
+      component: AlarmEdit,
+    },
+    {
+      path: /^#\/about$/,
+      component: About,
+    },
+    {
+      path: /^#\/profile$/,
+      component: Profile,
+    }
+  ];
 </script>
 
 <Page>
   <Header mix="page__header"/>
 
   <ContentPlace mix="page__body">
-    <Router {routes}/>
+    {#each routes as route}
+      {#if route.path.test(currentRoute)}
+        <svelte:component this={route.component}/>
+      {/if}
+    {/each}
   </ContentPlace>
 
   <Footer mix="page__footer"/>

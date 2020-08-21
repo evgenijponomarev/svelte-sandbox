@@ -1,18 +1,14 @@
 <script>
-  import { pop } from 'svelte-spa-router';
-
   import apiProvider from '../../services/api-provider';
 
   import Alarms from '../alarms/alarms';
 
   import DialogAlarmForm from '../../components/dialog-alarm-form/dialog-alarm-form';
 
-  export let params;
-
   let alarm;
 
   function onGetAlarms(alarms) {
-    alarm = alarms.find(a => +a.id === +params.id);
+    alarm = alarms.find(a => +a.id === +location.hash.split('/')[2]);
   }
 
   function onChangeData(alarmData) {
@@ -20,7 +16,7 @@
   }
 
   function closeDialog() {
-    pop();
+    window.history.back();
   }
 
   async function onDelete() {

@@ -1,6 +1,4 @@
 <script>
-  import { pop } from 'svelte-spa-router';
-
   import apiProvider from '../../services/api-provider';
 
   import Alarms from '../alarms/alarms.svelte';
@@ -10,7 +8,7 @@
   let alarm;
 
   function closeDialog() {
-    pop();
+    window.history.back();
   }
 
   function onChangeData(alarmData) {

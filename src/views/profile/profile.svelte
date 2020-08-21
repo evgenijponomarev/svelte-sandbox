@@ -1,5 +1,4 @@
 <script>
-  import { push } from 'svelte-spa-router';
   import { onMount } from 'svelte';
 
   import apiProvider from '../../services/api-provider';
@@ -39,7 +38,7 @@
     
     const { status } = await apiProvider.post('/profile', profile);
     if (status === 'ok') {
-      push('/');
+      location.hash = '#/';
     }
   }
 
