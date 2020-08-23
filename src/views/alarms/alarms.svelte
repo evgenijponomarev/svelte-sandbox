@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte';
+
   import apiProvider from '../../services/api-provider';
 
   import ButtonGroup from '../../components/button-group/button-group';
@@ -8,13 +10,13 @@
 
   export let onGetAlarms = () => {};
 
-  async function getAlarms() {
+  let alarms = [];
+
+  onMount(async () => {
     const { items } = await apiProvider.get('/alarms');
     onGetAlarms(items);
-    return items;
-  }
-  
-  let alarmsPromise = getAlarms();
+    alarms = items;
+  });
 </script>
 
 <Title>Будильники</Title>
@@ -23,8 +25,8 @@
   <Button mix="button-group__item" to="#/alarm-add">Добавить</Button>
 </ButtonGroup>
 
-{#await alarmsPromise}
+{#if alarms.length === 0}
   <p>...waiting</p>
-{:then alarms}
+{:else}
   <AlarmList {alarms}/>
-{/await}
+{/if}
