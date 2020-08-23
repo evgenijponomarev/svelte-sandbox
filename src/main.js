@@ -1,5 +1,7 @@
 import App from './App.svelte';
 
+// import logRenderTime from './services/log-render-time';
+
 const app = new App({
   target: document.getElementById('root'),
   props: {
@@ -14,5 +16,7 @@ window.onhashchange = function () {
 };
 
 window.app = app;
+
+// logRenderTime();
 
 export default app;
