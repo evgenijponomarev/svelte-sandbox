@@ -9,6 +9,7 @@
   import AlarmEdit from './views/alarm-edit/alarm-edit';
   import About from './views/about/about';
   import Profile from './views/profile/profile';
+  import Sandbox from './views/sandbox/sandbox';
 
   export let currentRoute = '';
 
@@ -40,6 +41,10 @@
     {
       path: /^#\/profile$/,
       component: Profile,
+    },
+    {
+      path: /^#\/sandbox$/,
+      component: Sandbox,
     }
   ];
 </script>
