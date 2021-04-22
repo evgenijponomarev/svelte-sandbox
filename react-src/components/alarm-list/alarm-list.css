@@ -1,0 +1,15 @@
+.alarm-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+  padding-top: 10px;
+}
+
+.alarm-list__item {
+  width: 50%;
+  max-width: 400px;
+  min-width: 200px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  padding: 10px;
+}

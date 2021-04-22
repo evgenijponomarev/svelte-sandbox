@@ -1,0 +1,20 @@
+.alarm-card {
+  display: block;
+  text-decoration: inherit;
+  color: inherit;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+  padding: 20px;
+}
+
+.alarm-card__time {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.alarm-card__repeat {
+  white-space: nowrap;
+}
+
+.alarm-card:hover {
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+}

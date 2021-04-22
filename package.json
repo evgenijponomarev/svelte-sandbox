@@ -1,9 +1,11 @@
 {
-  "name": "budilnik-on-svelte",
+  "name": "svelte-sandbox",
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack-dev-server --content-base public",
-    "build": "cross-env NODE_ENV=production webpack"
+    "dev:svelte": "webpack-dev-server --content-base public --config ./webpack.svelte.config.js",
+    "build:svelte": "cross-env NODE_ENV=production webpack --config ./webpack.svelte.config.js",
+    "dev:react": "webpack-dev-server --content-base public --config ./webpack.react.config.js",
+    "build:react": "cross-env NODE_ENV=production webpack --config ./webpack.react.config.js"
   },
   "devDependencies": {
     "webpack": "4.44.1",
@@ -15,10 +17,17 @@
     "mini-css-extract-plugin": "0.10.0",
     "cross-env": "7.0.2",
     "svelte": "3.24.1",
-    "svelte-loader": "2.13.6"
+    "svelte-loader": "2.13.6",
+    "babel-loader": "8.1.0",
+    "@babel/core": "7.11.4",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/preset-env": "7.11.0",
+    "@babel/preset-react": "7.10.4"
   },
   "dependencies": {
     "axios": "0.20.0",
-    "axios-mock-adapter": "1.18.2"
+    "axios-mock-adapter": "1.18.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }

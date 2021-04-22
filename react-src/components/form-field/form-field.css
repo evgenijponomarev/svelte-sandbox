@@ -1,0 +1,19 @@
+.form-field__label {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.form-field_type_checkbox {
+  display: flex;
+}
+
+.form-field_type_checkbox > .form-field__control {
+  order: 1;
+  margin-right: 5px;
+}
+
+.form-field_type_checkbox > .form-field__label {
+  order: 2;
+}

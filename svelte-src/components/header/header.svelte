@@ -5,7 +5,7 @@
 </script>
 
 <header class={['header', mix].join(' ')}>
-  <a href="#/" class="header__title">Будильник</a>
+  <a href="#/" class="header__title">Будильник на Svelte</a>
 
   <ProfileButton/>
 </header>
